@@ -27,18 +27,27 @@ public class TestListExamples {
 
   @Test(timeout = 500)
   public void testFilter2() {
-    List<String> s = Arrays.asList("a","b","c","moon");
+    List<String> s = Arrays.asList("Moon","mooon","moo","moon");
     List<String> expect = Arrays.asList("moon");
     List<String> result = ListExamples.filter(s,new IsMoon());
     assertEquals(expect,result);
   }
 
   @Test(timeout = 500)
-  public void testMergeRightEnd() {
+  public void testMergeRightEnd1() {
     List<String> left = Arrays.asList("a", "b", "c");
     List<String> right = Arrays.asList("a", "d");
     List<String> merged = ListExamples.merge(left, right);
     List<String> expected = Arrays.asList("a", "a", "b", "c", "d");
+    assertEquals(expected, merged);
+  }
+
+  @Test(timeout = 500)
+  public void testMergeRightEnd2() {
+    List<String> left = Arrays.asList("a", "b", "b", "c");
+    List<String> right = Arrays.asList("a", "d","d","d");
+    List<String> merged = ListExamples.merge(left, right);
+    List<String> expected = Arrays.asList("a", "a", "b", "b", "c", "d", "d", "d");
     assertEquals(expected, merged);
   }
 
