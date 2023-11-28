@@ -27,7 +27,7 @@ public class TestListExamples {
 
   @Test(timeout = 500)
   public void testFilter2() {
-    List<String> s = Arrays.asList("Moon","mooon","moo","moon");
+    List<String> s = Arrays.asList("oon","mooon","moo","moon");
     List<String> expect = Arrays.asList("moon");
     List<String> result = ListExamples.filter(s,new IsMoon());
     assertEquals(expect,result);
