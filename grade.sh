@@ -14,3 +14,34 @@ echo 'Finished cloning'
 
 # Then, add here code to compile and run, and do any post-processing of the
 # tests
+
+file='./student-submission/ListExamples.java'
+testfile='./TestListExamples.java'
+testlib='./lib'
+
+if [[ -f $file ]];
+then
+    echo "Received $file"
+else
+    echo  "$file not received"
+    exit
+fi
+
+destination='./grading-area'
+cp $file $destination
+cp $testfile $destination
+cp -r $testlib $destination
+
+cd grading-area
+
+javac -cp $CPATH *.java
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > test-result.txt
+
+if [[ $? -eq 0 ]];
+then
+    echo "java command failed"
+else
+    echo "tests run successfully"
+fi
+
+cat test-result.txt
